@@ -1,0 +1,49 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}
+    Blog | Post Details
+{% endblock %}
+{% block content %}
+    <div class="row blog-item px-3 pb-5">
+        <div class="col-md-5">
+            <img class="img-fluid mb-4 mb-md-0" src="{% static 'img/blog-1.jpg' %}" alt="Image">
+        </div>
+        <div class="col-md-7">
+            <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold"><a href="">{{ post.title }}</a></h3>
+            <div class="d-flex mb-3">
+                <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> {{ post.publish }} </small>
+{#                <small class="mr-2 text-muted"><i class="fa fa-folder"></i> Web Design</small>#}
+{#                <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>#}
+            </div>
+            <p>
+                {{ post.body }}
+            </p>
+            <a class="btn btn-primary" href="{% url "blog:update_post" post.id%}"> Edit </a>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+              Delete
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Warning!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure to delete Post - <span class="font-weight-bold text-danger">{{ post.title }}</span>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="#" class="btn btn-danger">Confirm Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

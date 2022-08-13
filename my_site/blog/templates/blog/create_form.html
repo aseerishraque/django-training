@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+{% block title %}
+    Blog | Post Create/Delete
+{% endblock %}
+{% block content %}
+    <div class="row blog-item px-3 pb-5">
+        <div class="col-md-5">
+            <form method="post">
+                {% csrf_token %}
+                {{ post_form.as_p }}
+                <p>
+                    <input type="submit" value="{{ operation_type }} Post">
+                </p>
+            </form>
+        </div>
+    </div>
+{% endblock %}
